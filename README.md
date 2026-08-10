@@ -81,7 +81,7 @@ These measures were organized in a dedicated measures table to keep the model st
 
 The final Power BI dashboard was designed to provide a consolidated view of financial activity and allow users to explore their finances interactively.
 
-![Personal Finance Tracker Dashboard](screenshots/dashboard-overview.png)
+![Personal Finance Tracker Dashboard](screenshots/dashboard_overview.png)
 
 Key dashboard components include:
 
