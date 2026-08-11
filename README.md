@@ -101,12 +101,11 @@ Key dashboard components include:
 The dashboard provides a consolidated view of financial activity and highlights patterns across income, expenses, categories, monthly performance, and recipients.
 
 Key findings from the analysis include:
+- Net-income margin held steady at around 49% despite a 34% drop in income. Income fell from 2.04M to 1.34M, while expenses declined at a similar rate from 1.03M to 683K, showing that spending remained broadly aligned with lower earnings.
+- The income mix became less dependent on salary and rental income. Salary declined by 44% and Property Rental by 41%, while  Freelance  and business related income were comparatively more resilient, declining by 25% and 27% respectively.
+- The expense mix remained relatively diversified. No single expense category dominated spending in either year, with major categories such as family transfers, taxes, transport, food, and utilities remaining relatively close in value.
+- Recipient concentration increased despite lower recipient-linked amounts. Sarah Wilson's contribution rose from 15.9% to 17.5%, indicating that a larger share of recipient-related outflows was concentrated among the top recipient in 2024.
 
-- **Income performance:** 
-- **Expense patterns:** 
-- **Category contribution:** 
-- **Monthly financial performance:** 
-- **Recipient concentration:** 
 
 ## Tools & Technologies
 
@@ -114,21 +113,10 @@ Key findings from the analysis include:
 - **Power BI** — Data modelling, DAX calculations, interactive visualization, and dashboard development.
 - **DAX** — Time intelligence, financial metrics, variance and growth analysis, contribution analysis, and custom SVG visuals.
 
-## Project Files
-
-- **Dashboard screenshots** — Static previews of the completed Power BI dashboard.
-- **Data model documentation** — Overview of the fact and dimension tables and their relationships.
-- **Selected DAX measures** — Key calculations used for financial metrics, time intelligence, variance, growth, and contribution analysis.
-- **Project documentation** — Details of the data preparation, modelling, analysis, and findings.
 
 ## Recommendations
 
-Based on the analytical framework developed in the dashboard, the solution can support better financial decision-making by helping users:
-
-- Monitor income and expense movements across different periods.
-- Identify categories that account for a significant share of total spending.
-- Track recurring or high-value transactions and recipients.
-- Compare current financial performance with previous periods.
-- Investigate significant changes in income, expenses, and net income.
-- Use contribution and trend analysis to identify areas where spending patterns may require attention.
+- Strengthen resilient income streams : Monitor and build the freelance and business-related income sources that showed greater resilience as overall income declined.
+- Investigate the drivers of the income decline : Identify why salary and rental income fell significantly and determine whether the change is temporary or structural.
+- Monitor recipient concentration : Track recipient share, not just totals, concentration can rise even while overall spend falls
 
