@@ -109,9 +109,9 @@ Key findings from the analysis include:
 
 ## Tools & Technologies
 
-- **Microsoft Excel** — Data preparation, cleaning, validation, and initial data review.
-- **Power BI** — Data modelling, DAX calculations, interactive visualization, and dashboard development.
-- **DAX** — Time intelligence, financial metrics, variance and growth analysis, contribution analysis, and custom SVG visuals.
+- **Microsoft Excel** - Data preparation, cleaning, validation, and initial data review.
+- **Power BI** - Data modelling, DAX calculations, interactive visualization, and dashboard development.
+- **DAX** - Time intelligence, financial metrics, variance and growth analysis, contribution analysis, and custom SVG visuals.
 
 
 ## Recommendations
