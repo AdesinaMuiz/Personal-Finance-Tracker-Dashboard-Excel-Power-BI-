@@ -9,9 +9,15 @@ The data was prepared and validated using **Microsoft Excel**, including data cl
 
 ## Problem Statement
 
-Managing personal finances across multiple accounts and transactions can make it difficult to understand where money is coming from, where it is being spent, and how financial activity changes over time. Transaction data on its own provides individual records but does not readily provide a consolidated view of financial performance.
+Managing personal finances across multiple accounts and transactions can make it difficult to understand where money is coming from, where it is being spent, and see financial activity at a glance.
 
-The objective of this project was to transform transaction-level financial data into an interactive reporting solution that makes key financial information easier to monitor and interpret. The dashboard was designed to quickly assess balances, compare income and expenses, track monthly changes, identify major transaction categories, and understand which recipients account for a significant share of financial activity.
+I wanted a single view that could answer, quickly:
+- How much am I spending vs earning, and is that trend improving or worsening?
+- Which categories (and which people/recipients) is my money actually going to?
+- How does this month compare to last month and by how much?
+- Can I see this by account, by card, by category, or by recipient without rebuilding the view each time?
+
+Goal: To design and build a finance tracker that answers all of the above in one interactive dashboard, cleaned and modelled properly.
 
 ## Data Disclaimer
 
@@ -19,6 +25,9 @@ The financial data used in this project is **sample data** created for analytica
 
 ## Project Objectives
 
+The objective of this project was to transform transaction-level financial data into an interactive reporting solution that provides a consolidated view of financial activity and supports faster, more informed decision-making.
+
+The project was designed to:
 - Prepare and validate transaction data for analysis using Microsoft Excel.
 - Build a structured relational data model in Power BI using fact and dimension tables.
 - Create time-based analysis using a dedicated calendar table and DAX time-intelligence measures.
