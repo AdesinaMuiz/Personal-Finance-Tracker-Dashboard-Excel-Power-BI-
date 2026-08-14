@@ -126,3 +126,206 @@ Income Growth = DIVIDE([Income Variance], [Income])
 
 Net Income Growth = DIVIDE([Net Income Variance], [Net Income])
 ```
+### Variance % Arrow Measures
+
+```
+Expense Variance % Arrow =
+    VAR _upArrow = UNICHAR(129129)
+    VAR _downArrow = UNICHAR(129131)
+    RETURN
+        IF(
+            ISBLANK([Expense]),
+            BLANK(),
+            IF(
+                [Expense Variance] > 0,
+                "+" & ROUND([Expense Growth] * 100, 1) & "%" & _upArrow,
+                ROUND([Expense Growth] * 100, 1) & "%" & _downArrow
+            )
+        )
+Incoeme Variance % Arrow =
+    VAR _upArrow = UNICHAR(129129)
+    VAR _downArrow = UNICHAR(129131)
+    RETURN
+        IF(
+            ISBLANK([Income]),
+            BLANK(),
+            IF(
+                [Income Variance] > 0,
+                "+" & ROUND([Income Growth] * 100, 1) & "%" & _upArrow,
+                ROUND([Income Growth] * 100, 1) & "%" & _downArrow
+            )
+        )
+```
+The measures formats the month-over-month growth as a percentage with an upward or downward arrow for use in dashboard cards and indicators.
+
+## Contribution Analysis
+
+### Contribution
+
+```
+Contribution =
+    VAR _allvalue =
+        CALCULATE(
+            [Total Amount],
+            ALL(dim_Category[Type]),
+            ALL(dim_Category[Category])
+        )
+    RETURN
+        DIVIDE([Total Amount], _allvalue)
+```
+Calculates the contribution of the current category to the overall transaction value. The denominator removes the current Type and Category filters so the measure can compare the selected category against the overall total.
+
+### Family & Friends Contribution
+
+```
+Family n Friends Contribution =
+    VAR _allvalue =
+        CALCULATE(
+            [Total Amount],
+            FILTER(
+                ALL(dim_Recipient),
+                dim_Recipient[RecipientName] <> BLANK()
+            )
+        )
+    RETURN
+        DIVIDE([Total Amount], _allvalue)
+```
+Calculates each recipient's contribution to the total transaction value across non-blank recipients, removing the existing recipient filter context before calculating the overall recipient total.
+
+## Custom SVG Visualizations
+
+### Contribution SVG
+
+```
+Contribution SVG =
+    VAR _Percentage = [Contribution] * 100
+    VAR _PercentageFormate = FORMAT(_Percentage, "#0")
+    VAR _ProgressBar = _Percentage * 0.75
+
+    RETURN
+        "data:image/svg+xml;utf8," &
+        "<svg width='120' height='30' xmlns='http://www.w3.org/2000/svg'
+        xmlns:xlink='https://lnkd.in/dZ5ikEfb'
+        display='block' overflow='visible'>
+
+            <defs>
+                <linearGradient id='gradient' x1='0%' y1='0%' x2='80%' y2='0%'
+                gradientUnits='userSpaceOnUse'>
+                    <stop offset='45%' style='stop-color: #24D1DB' />
+                    <stop offset='130%' style='stop-color: #0FF14E'/>
+                </linearGradient>
+            </defs>
+
+            <rect x='0' y='0' width='120' height='20'
+            rx='10' ry='10' style='fill: #a0a7d8'/>
+
+            <rect x='2.5' y='2.4' width='37' height='15'
+            rx='8' ry='8' style='fill: #000000' />
+
+            <text x='22' y='11.2' fill='white'
+            text-anchor='middle' dominant-baseline='middle'
+            font-family='Arial' font-weight='bold' font-size='12'>
+                " & _PercentageFormate & "
+                <tspan font-size='8' fill='white'> % </tspan>
+            </text>
+
+            <rect x='42.5' y='2.4' width='" & _ProgressBar & "'
+            height='15' rx='8' ry='8' style='fill: url(#gradient)'>
+
+                <animate attributeName='width'
+                from='0' to='" & _ProgressBar & "'
+                dur='2s' fill='freeze'/>
+
+            </rect>
+        </svg>"
+
+```
+This generates a dynamic SVG progress bar that displays each category's contribution percentage directly within the Power BI visual.
+The SVG dimensions and progress-bar width are dynamically calculated from the [Contribution] measure, allowing the visual to update with the current filter context.
+
+### Total Amount Area Sparkline
+
+```
+Total Amount Area Sparkline =
+    VAR Defs =
+        "<defs>
+            <linearGradient id='grad'
+                x1='0' y1='25'
+                x2='0' y2='50'
+                gradientUnits='userSpaceOnUse'>
+                <stop stop-color='navy' offset='0' />
+                <stop stop-color='transparent' offset='1' />
+            </linearGradient>
+        </defs>"
+
+    VAR XMinDate =
+        MIN('Calendar'[Monthnum])
+
+    VAR XMaxDate =
+        MAX('Calendar'[Monthnum])
+
+    VAR YMinValue =
+        MINX(
+            VALUES('Calendar'[Monthnum]),
+            CALCULATE([Total Amount])
+        )
+
+    VAR YMaxValue =
+        MAXX(
+            VALUES('Calendar'[Monthnum]),
+            CALCULATE([Total Amount])
+        )
+
+    VAR SparklineTable =
+        ADDCOLUMNS(
+            SUMMARIZE(
+                'Calendar',
+                'Calendar'[Monthnum]
+            ),
+            "X",
+                INT(
+                    150 *
+                    DIVIDE(
+                        'Calendar'[Monthnum] - XMinDate,
+                        XMaxDate - XMinDate
+                    )
+                ),
+            "Y",
+                INT(
+                    50 *
+                    DIVIDE(
+                        [Total Amount] - YMinValue,
+                        YMaxValue - YMinValue
+                    )
+                )
+        )
+
+    VAR Lines =
+        CONCATENATEX(
+            SparklineTable,
+            [X] & "," & 50 - [Y],
+            " ",
+            'Calendar'[Monthnum]
+        )
+
+    VAR SVGImageURL =
+        "data:image/svg+xml;utf8;" &
+        "<svg xmlns='http://www.w3.org/2000/svg'
+            x='0px' y='0px'
+            viewBox='0 0 150 50'>" &
+            Defs &
+            "<polyline
+                fill='url(%23grad)'
+                fill-opacity='0.3'
+                stroke='navy'
+                stroke-width='3'
+                points='0 50 " &
+                Lines &
+                " 150 50' />
+            </svg>"
+
+    RETURN
+        SVGImageURL
+```
+This creates a dynamic area sparkline showing the monthly movement of total transaction value. The measure builds a temporary table of monthly values, scales the X and Y coordinates to the SVG dimensions, and generates the final SVG dynamically based on the current filter context.
+
