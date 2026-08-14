@@ -9,7 +9,7 @@ The data was prepared and validated using **Microsoft Excel**, including data cl
 
 ## Problem Statement
 
-Managing personal finances across multiple accounts and transactions can make it difficult to understand where money is coming from, where it is being spent, and see financial activity at a glance.
+Managing personal finances across multiple accounts and transactions can make it difficult to understand where money is coming from, where it is being spent, and understanding the overall financial activity at a glance.
 
 I wanted a single view that could answer, quickly:
 - How much am I spending vs earning, and is that trend improving or worsening?
@@ -17,7 +17,7 @@ I wanted a single view that could answer, quickly:
 - How does this month compare to last month and by how much?
 - Can I see this by account, by card, by category, or by recipient without rebuilding the view each time?
 
-Goal: To design and build a finance tracker that answers all of the above in one interactive dashboard, cleaned and modelled properly.
+Goal: To design and build a finance tracker that answers these questions in one interactive dashboard, with the data properly cleaned and modelled for analysis.
 
 ## Data Disclaimer
 
@@ -34,6 +34,12 @@ The project was designed to:
 - Monitor key financial metrics including balances, income, expenses, and net income.
 - Analyze financial activity by transaction type, category, subcategory, and recipient.
 - Develop an interactive dashboard that enables users to explore financial performance and trends at a glance.
+
+## Tools & Technologies
+
+- **Microsoft Excel** - Data preparation, cleaning, validation, and initial data review.
+- **Power BI** - Data modelling, DAX calculations, interactive visualization, and dashboard development.
+- **DAX** - Time intelligence, financial metrics, variance and growth analysis, contribution analysis, and custom SVG visuals.
 
 ## Data Preparation
 
@@ -112,20 +118,11 @@ The dashboard provides a consolidated view of financial activity and highlights 
 Key findings from the analysis include:
 - Net-income margin held steady at around 49% despite a 34% drop in income. Income fell from 2.04M to 1.34M, while expenses declined at a similar rate from 1.03M to 683K, showing that spending remained broadly aligned with lower earnings.
 - The income mix became less dependent on salary and rental income. Salary declined by 44% and Property Rental by 41%, while  Freelance  and business related income were comparatively more resilient, declining by 25% and 27% respectively.
-- The expense mix remained relatively diversified. No single expense category dominated spending in either year, with major categories such as family transfers, taxes, transport, food, and utilities remaining relatively close in value.
-- Recipient concentration increased despite lower recipient-linked amounts. Sarah Wilson's contribution rose from 15.9% to 17.5%, indicating that a larger share of recipient-related outflows was concentrated among the top recipient in 2024.
-
-
-## Tools & Technologies
-
-- **Microsoft Excel** - Data preparation, cleaning, validation, and initial data review.
-- **Power BI** - Data modelling, DAX calculations, interactive visualization, and dashboard development.
-- **DAX** - Time intelligence, financial metrics, variance and growth analysis, contribution analysis, and custom SVG visuals.
-
+- Expense concentration remained relatively low. No single expense category dominated spending in either year, with major categories such as family transfers, taxes, transport, food, and utilities contributing relatively similar amounts.
+- Recipient concentration increased despite lower recipient spending. Sarah Wilson's share of recipient-related transactions rose from 15.9% to 17.5%, meaning recipient spending became slightly more concentrated around the top recipient in 2024.
 
 ## Recommendations
 
-- Strengthen resilient income streams : Monitor and build the freelance and business-related income sources that showed greater resilience as overall income declined.
-- Investigate the drivers of the income decline : Identify why salary and rental income fell significantly and determine whether the change is temporary or structural.
-- Monitor recipient concentration : Track recipient share, not just totals, concentration can rise even while overall spend falls
-
+- **Strengthen resilient income streams:** Continue monitoring and developing freelance and business-related income sources, which showed greater resilience as overall income declined.
+- **Investigate the drivers of income decline:** Determine why salary and rental income fell significantly and assess whether the decline is temporary or structural.
+- **Monitor recipient concentration:** Track recipient share alongside total amounts, since concentration can increase even when overall spending declines.
